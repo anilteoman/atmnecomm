@@ -1,15 +1,16 @@
 
 import './App.css'
+import Footer from "./layout/Footer";
+import Header from "./layout/Header";
+import PageContent from "./layout/PageContent";
 
 function App() {
 
   return (
     <>
-      <div className='text-center'>
-        <h1 className="text-3xl font-bold underline">
-    Hello world! tailwindcss test
-  </h1>
-      </div>
+      <Header />
+      <PageContent />
+      <Footer />
       
     </>
   )
