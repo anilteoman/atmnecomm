@@ -7,12 +7,12 @@ import PageContent from "./layout/PageContent";
 function App() {
 
   return (
-    <>
+    <div className='font-montserrat'>
       <Header />
       <PageContent />
       <Footer />
       
-    </>
+    </div>
   )
 }
 
