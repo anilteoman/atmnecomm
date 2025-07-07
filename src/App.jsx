@@ -1,19 +1,23 @@
-
-import './App.css'
-import Footer from "./layout/Footer";
+import { Switch, Route } from "react-router-dom";
 import Header from "./layout/Header";
-import PageContent from "./layout/PageContent";
+import Footer from "./layout/Footer";
+import HomePage from "./pages/HomePage";
+import './App.css';
 
 function App() {
-
   return (
-    <div className='font-montserrat'>
+    <div className="flex flex-col min-h-screen">
       <Header />
-      <PageContent />
+      <main className="flex-grow">
+        <Switch>
+          <Route exact path="/">
+            <HomePage />
+          </Route>
+        </Switch>
+      </main>
       <Footer />
-      
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
