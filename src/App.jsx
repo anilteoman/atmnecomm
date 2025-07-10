@@ -1,23 +1,17 @@
-import { Switch, Route } from "react-router-dom";
-import Header from "./layout/Header";
-import Footer from "./layout/Footer";
-import HomePage from "./pages/HomePage";
-import './App.css';
+import Header from './layout/Header'
+import PageContent from './layout/PageContent'
+import Footer from './layout/Footer'
+import './App.css'
 
 function App() {
+ 
   return (
-    <div className="flex flex-col min-h-screen">
+    <>
       <Header />
-      <main className="flex-grow">
-        <Switch>
-          <Route exact path="/">
-            <HomePage />
-          </Route>
-        </Switch>
-      </main>
+      <PageContent />
       <Footer />
-    </div>
-  );
+    </>
+  )
 }
 
-export default App;
+export default App

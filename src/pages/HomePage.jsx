@@ -1,27 +1,21 @@
-import React from "react";
-import HeroSection from "../components/home/HeroSection";
-import BrandLogos from "../components/other/BrandLogos";
-import FeaturedProducts from "../components/home/FeaturedProducts";
-import BestsellerProd from "../components/home/BestSellerProd";
-import WeLoveWhatWeDo from "../components/home/WLWWD";
-import Services from "../components/home/Services";
-import FeaturedPosts from "../components/home/FeaturedPosts";
+import BrandLogos from "../components/BrandLogos";
+import FeaturedPosts from "../components/FeaturedPosts";
+import FeaturedProducts from "../components/FeaturedProducts";
+import Hero from "../components/Hero";
+import ProductCards from "../components/ProductsCards";
+import Services from "../components/Services";
+import ShopCards from "../components/ShopCards";
 
-
-
-const HomePage = () => {
-  return (
-    <div>
-      <HeroSection />
-      <BrandLogos />
-      <FeaturedProducts />
-      <BestsellerProd />
-      <WeLoveWhatWeDo />
-      <Services />
-      <FeaturedPosts />
-      
-    </div>
-  );
-};
-
-export default HomePage;
+export default function HomePage() {
+    return (
+        <>
+            <Hero />
+            <BrandLogos />
+            <ShopCards />
+            <ProductCards />
+            <FeaturedProducts />
+            <Services />
+            <FeaturedPosts />
+        </>
+    );
+}
