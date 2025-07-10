@@ -66,9 +66,9 @@ export default function Header() {
                             <nav className="navbar flex gap-[0.938rem] text-sm font-bold leading-6 text-[#737373]">
                                 <Link to="/">Home</Link>
                                 <Link to="/shop">Shop</Link>
-                                <Link to="/">About</Link>
+                                <Link to="/about">About</Link>
                                 <Link to="/">Blog</Link>
-                                <Link to="/">Contact</Link>
+                                <Link to="/contact">Contact</Link>
                                 <Link to="/">Pages</Link>
                             </nav>
                             <div className="tools flex text-[#23A6F0] text-sm font-bold leading-6 gap-3.5">
