@@ -1,30 +1,21 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHooli, faLyft, faPiedPiperHat, faStripe, faAws, faRedditAlien } from "@fortawesome/free-brands-svg-icons";
+import {useLocation} from "react-router-dom";
 
-const brands = [
-  { name: "Hooli", src: "/hooli.png" },
-  { name: "Lyft", src: "/lyft.png" },
-  { name: "Leaf", src: "/leaf.png" },
-  { name: "Stripe", src: "/stripe.png" },
-  { name: "Amazon", src: "/amazon.png" },
-  { name: "Reddit", src: "/reddit.png" },
-];
+export default function Clients() {
+    
+    const location = useLocation();
 
-const BrandLogos = ({ className = "py-12 bg-white" }) => {
-  return (
-    <section className={className}>
-      <div className="container mx-auto px-4">
-        <div className="flex flex-wrap justify-center md:justify-between items-center gap-8 md:gap-6">
-          {brands.map((brand) => (
-            <img
-              key={brand.name}
-              src={brand.src}
-              alt={brand.name}
-              className="h-8 md:h-10 object-contain"
-            />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-export default BrandLogos;
+    const bgColor = location.pathname == "/" ? "bg-white" : "bg-[#FAFAFA]";
+    
+    return (
+        <section className={`clients text-[#737373] flex flex-col md:flex-row items-center py-[3.125rem] md:px-[3.125rem] md:justify-center gap-[3.75rem] text-8xl ${bgColor}`}>
+            <FontAwesomeIcon icon={faHooli}/>
+            <FontAwesomeIcon icon={faLyft} />
+            <FontAwesomeIcon icon={faPiedPiperHat} />
+            <FontAwesomeIcon icon={faStripe} />
+            <FontAwesomeIcon icon={faAws} />
+            <FontAwesomeIcon icon={faRedditAlien} />
+        </section>
+    );
+}
