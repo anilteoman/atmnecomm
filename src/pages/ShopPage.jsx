@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
-import ShopCategories from "../components/ShopCategories";
-import BrandLogos from "../components/BrandLogos";
+import ShopCategories from "../components/shopPage/ShopCategories";
+import BrandLogos from "../components/sharedcomp/BrandLogos";
 
 const ShopPage = () => {
   return (
