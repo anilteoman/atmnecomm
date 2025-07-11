@@ -9,7 +9,7 @@ export default function Footer() {
     
     return (
         <footer className="footer mt-10">
-            <section className={`socials ${bgColor} flex flex-col py-10 px-28 gap-8 md:flex-row md:justify-between md:px-60`}>
+            <section className={`socials ${bgColor} flex flex-col py-10 px-10 gap-8 md:flex-row md:justify-between md:px-35`}>
                 <div className="logo">
                     <h3 className="text-2xl font-bold leading-8 text-[#252B42]">Bandage</h3>
                 </div>
@@ -19,7 +19,7 @@ export default function Footer() {
                     <Twitter />
                 </div>
             </section>
-            <section className="links flex flex-col gap-[1.875rem] py-[4.375rem] px-28 md:flex-row md:justify-between md:px-60">
+            <section className="links flex flex-col gap-[1.875rem] py-[4.375rem] px-10 md:flex-row md:justify-between md:px-60">
                 <div className="company-info flex flex-col gap-5">
                     <h5 className="text-base font-bold leading-6 text-[#252B42] pb-2.5">Company Info</h5>
                     <Link className="text-[#737373] text-sm font-bold leading-6">About Us</Link>
