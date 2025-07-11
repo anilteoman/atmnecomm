@@ -1,7 +1,7 @@
-
 import React from "react";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import ShopCategories from "../components/ShopCategories";
+import BrandLogos from "../components/BrandLogos";
 
 const ShopPage = () => {
   return (
@@ -10,6 +10,7 @@ const ShopPage = () => {
         <p className="text-2xl font-bold leading-8 text-[#252B42]">Shop</p>
         <div className="flex gap-4">
           <NavLink to="/">Home</NavLink>
+          <span className="text-bold"> s </span>
           <p className="text-[#BDBDBD]">Shop</p>
         </div>
       </div>
@@ -17,6 +18,7 @@ const ShopPage = () => {
         <ShopCategories />
       </div>
 
+      <BrandLogos />
     </div>
   );
 };
