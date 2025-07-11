@@ -4,6 +4,7 @@ import ShopPage from "../pages/ShopPage";
 import ProductDetail from "../pages/ProductDetail";
 import ContactPage from "../pages/ContactPage";
 import AboutPage from "../pages/AboutPage";
+import BlogPage from "../pages/BlogPage";
 
 export default function PageContent() {
     return (
@@ -20,6 +21,9 @@ export default function PageContent() {
                 </Route>
                 <Route path="/contact">
                     <ContactPage />
+                </Route>
+                <Route path="/blog">
+                    <BlogPage />
                 </Route>
                 <Route path="/product">
                     <ProductDetail />
