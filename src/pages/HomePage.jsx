@@ -1,17 +1,17 @@
-import BrandLogos from "../components/BrandLogos";
-import FeaturedPosts from "../components/FeaturedPosts";
-import FeaturedProducts from "../components/FeaturedProducts";
-import Hero from "../components/Hero";
-import ProductCards from "../components/ProductCards";
-import Services from "../components/Services";
-import ShopCards from "../components/ShopCards";
+import BrandLogos from "../components/sharedcomp/BrandLogos";
+import FeaturedPosts from "../components/homepage/FeaturedPosts";
+import FeaturedProducts from "../../public/FeaturedProducts";
+import Hero from "../components/homepage/Hero";
+import ProductCards from "../components/homepage/ProductCards";
+import Services from "../components/homepage/Services";
+import HomeShopCards from "../components/homepage/HomeShopCards";
 
 export default function HomePage() {
     return (
         <>
             <Hero />
             <BrandLogos />
-            <ShopCards />
+            <HomeShopCards />
             <ProductCards />
             <FeaturedProducts />
             <Services />

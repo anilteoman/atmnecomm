@@ -1,5 +1,5 @@
-import hero from "../assets/hero.png"
-import heroMobile from "../assets/heromobile.png"
+import hero from "/hero.png"
+import heroMobile from "/heromobile.png"
 
 export default function Hero() {
     return (

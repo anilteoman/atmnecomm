@@ -1,5 +1,5 @@
-import featured1 from "../assets/featured1.jpg";
-import featured2 from "../assets/featured2.jpg";
+import featured1 from "/featured1.jpg";
+import featured2 from "/featured2.jpg";
 
 export default function FeaturedProducts() {
     return (

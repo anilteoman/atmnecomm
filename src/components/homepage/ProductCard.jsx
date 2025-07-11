@@ -1,4 +1,4 @@
-import productImage from "../assets/productImage.jpg";
+import productImage from "/productImage.jpg";
 
 
 /*product datasi databaseden alinacak */

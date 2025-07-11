@@ -1,5 +1,5 @@
-import FeaturedPostImg from "../assets/featuredpostimg.jpg";
-import FeaturedPost1 from "../assets/featuredpost1.jpg";
+import FeaturedPostImg from "/featuredpostimg.jpg";
+import FeaturedPost1 from "/featuredpost1.jpg";
 import { AlarmClock, ChartArea, ChevronRight, Heart, ShoppingCart, Eye, ChartBar, Star, Download } from "lucide-react";
 
 export default function FeaturedPost() {
