@@ -1,6 +1,6 @@
 import BrandLogos from "../components/sharedcomp/BrandLogos";
 import FeaturedPosts from "../components/homepage/FeaturedPosts";
-import FeaturedProducts from "../../public/FeaturedProducts";
+import FeaturedProducts from "../components/homepage/FeaturedProducts";
 import Hero from "../components/homepage/Hero";
 import ProductCards from "../components/homepage/ProductCards";
 import Services from "../components/homepage/Services";
