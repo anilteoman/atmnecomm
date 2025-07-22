@@ -5,6 +5,7 @@ import ProductDetail from "../pages/ProductDetail";
 import ContactPage from "../pages/ContactPage";
 import AboutPage from "../pages/AboutPage";
 import BlogPage from "../pages/BlogPage";
+import TeamPage from "../pages/TeamPage";
 
 export default function PageContent() {
     return (
@@ -26,6 +27,12 @@ export default function PageContent() {
                     <BlogPage />
                 </Route>
                 <Route path="/product">
+                    <ProductDetail />
+                </Route>
+                <Route path="/team">
+                    <TeamPage />
+                </Route>
+                <Route path="/product:id">
                     <ProductDetail />
                 </Route>
             </Switch>

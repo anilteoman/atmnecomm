@@ -71,7 +71,7 @@ export default function Header() {
                                 <Link to="/about">About</Link>
                                 <Link to="/blog">Blog</Link>
                                 <Link to="/contact">Contact</Link>
-                                <Link to="/">Pages</Link>
+                                <Link to="/team">Team</Link>
                             </nav>
                             <div className="tools flex text-[#23A6F0] text-sm font-bold leading-6 gap-3.5">
                                 <div className="login flex gap-[0.313rem] mr-3">
