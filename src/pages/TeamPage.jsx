@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+/*import React, { useEffect, useState } from "react";*/
 import TeamMember from "../components/teampage/TeamMember";
-import axios from "axios";
+/*import axios from "axios";*/
+import { team } from "../data/team";
 
 const TeamPage = () => {
-  const [team, setTeam] = useState([]);
+ /* const [team, setTeam] = useState([]);
+
+    **ŞİMDİLİK OUT**  backend yazildiktan sonra geri aktifleştirilecek.
 
     useEffect(() => {
     axios.get("https://6870f7127ca4d06b34b8d1a4.mockapi.io/atmnecomm/team")
@@ -13,7 +16,7 @@ const TeamPage = () => {
       .catch((error) => {
         console.error("API'den veriler alinamadi:", error);
       });
-  }, []);
+  }, []);*/
 
   return (
    <section className="py-16 px-[112px] text-center">

@@ -60,7 +60,7 @@ export default function Header() {
                             <Twitter />
                         </div>
                     </div>
-                    <div className="dektop-navbar flex items-center px-35 mt-[0.813rem]">
+                    <div className="desktop-navbar flex items-center px-35 mt-[0.813rem]">
                         <div className="logo flex-none">
                             <span className="text text-2xl font-bold text-[#252B42] leading-8">Bandage</span>
                         </div>
@@ -71,7 +71,7 @@ export default function Header() {
                                 <Link to="/about">About</Link>
                                 <Link to="/blog">Blog</Link>
                                 <Link to="/contact">Contact</Link>
-                                <Link to="/team">Team</Link>
+                                <Link to="/">Pages</Link>
                             </nav>
                             <div className="tools flex text-[#23A6F0] text-sm font-bold leading-6 gap-3.5">
                                 <div className="login flex gap-[0.313rem] mr-3">

@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from "react";
+/*import React, { useEffect, useState } from "react";*/
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import ShopCategories from "../components/shopPage/ShopCategories";
 import BrandLogos from "../components/sharedcomp/BrandLogos";
-import axios from "axios";
+/*import axios from "axios";*/
 import ShopProductCard from "../components/shopPage/ShopProductCard";
+import { products } from "../data/products";
 
 const ShopPage = () => {
 
-  const [products, setProducts] = useState([]);
+  /*const [products, setProducts] = useState([]);
 
     useEffect(() => {
     axios.get("https://6870f7127ca4d06b34b8d1a4.mockapi.io/atmnecomm/products?page=1&limit=12")
       .then(res => setProducts(res.data))
       .catch(err => console.error(err));
-  }, []);
+  }, []);*/
 
 
   return (
