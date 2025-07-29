@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
+
+
+/*  PRODUCT DETAİL AXİOS İSTEGİ APİ DE 404 OLARAK DONUYOR . FİXLE*/
+
 const ProductDetail = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
