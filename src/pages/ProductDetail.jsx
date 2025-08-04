@@ -4,6 +4,8 @@ import axios from "axios";*/
 import ProductCards from "../components/homepage/ProductCards";
 import { products } from "../data/products";
 
+/*product id si prop olarak verilecek/
+
 
 
 /*  PRODUCT DETAİL AXİOS İSTEGİ APİ DE 404 OLARAK DONUYOR . FİXLE*/
@@ -32,7 +34,6 @@ const ProductDetail = () => {
             alt={products.product_name}
             className="w-full rounded-lg"
           />
-          {/* Thumbnail images varsa burada slider yap */}
         </div>
 
         {/* Sağ: Ürün Bilgileri */}
