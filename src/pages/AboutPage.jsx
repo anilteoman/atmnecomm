@@ -3,6 +3,9 @@ import TeamPage from "./TeamPage";
 import aboutCompany from "/aboutcompany.png";
 import BrandLogos from "../components/sharedcomp/BrandLogos";
 import aboutTestimonials from "/abouttestimonials.jpg"
+import aboutVideo from "/aboutvideo.jpg"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCirclePlay } from "@fortawesome/free-regular-svg-icons";
 
 const AboutPage = () => {
   return (
@@ -20,9 +23,7 @@ const AboutPage = () => {
               We know how large objects will act, but things on a small scale
               just do not act that way.
             </h4>
-            <button className="bg-[#23A6F0] text-white text-sm leading-[1.375rem] font-bold py-[0.938rem] px-10 rounded-[0.313rem] w-48 h-[3.25rem] hover:cursor-pointer">
-              Get Quote Now
-            </button>
+            <button className="bg-[#23A6F0] text-white text-sm leading-[1.375rem] font-bold py-[0.938rem] px-10 rounded-[0.313rem] w-48 h-[3.25rem] hover:cursor-pointer">Get Quote Now</button>
           </div>
           <div className="about-company-img w-[24.188rem] h-[27.5rem] md:w-[39.5rem] md:h-[38.25rem]">
             <img src={aboutCompany} alt="" />
@@ -82,9 +83,12 @@ const AboutPage = () => {
           </div>
         </div>
       </section>
-      <section>
-        <h1>*video gelecek*</h1>
-      </section>
+      <section className="about-video-main mt-10">
+            <div className="about-video-content flex justify-center relative">
+                <div className="absolute top-[8.125rem] md:top-[15rem] text-[#23A6F0] text-6xl"><FontAwesomeIcon icon={faCirclePlay} /></div>
+                <img src={aboutVideo} className="w-[19.188rem] h-[19.75rem] rounded-xl md:rounded-[1.25rem] object-cover object-center md:w-[61.813rem] md:h-[33.75rem]" />
+            </div>
+        </section>
 
       <TeamPage />
 
