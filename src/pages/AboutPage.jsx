@@ -23,7 +23,7 @@ const AboutPage = () => {
               We know how large objects will act, but things on a small scale
               just do not act that way.
             </h4>
-            <button className="bg-[#23A6F0] text-white text-sm leading-[1.375rem] font-bold py-[0.938rem] px-10 rounded-[0.313rem] w-48 h-[3.25rem] hover:cursor-pointer">Get Quote Now</button>
+            <button className="w-[13.813rem] h-[3.875rem] bg-[#23A6F0] text-white font-bold leading-8 rounded-[0.313rem] hover:cursor-pointer">Get Quote Now</button>
           </div>
           <div className="about-company-img w-[24.188rem] h-[27.5rem] md:w-[39.5rem] md:h-[38.25rem]">
             <img src={aboutCompany} alt="" />
