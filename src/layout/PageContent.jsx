@@ -6,6 +6,9 @@ import ContactPage from "../pages/ContactPage";
 import AboutPage from "../pages/AboutPage";
 import BlogPage from "../pages/BlogPage";
 import TeamPage from "../pages/TeamPage";
+import SignUp from "../pages/SignUpPage";
+import LogIn from "../pages/LoginPage";
+import ShoppingCart from "../pages/ShoppingCart";
 
 export default function PageContent() {
     return (
@@ -34,6 +37,15 @@ export default function PageContent() {
                 </Route>
                 <Route path="/product:id">
                     <ProductDetail />
+                </Route>
+                 <Route path="/signup">
+                    <SignUp />
+                </Route>
+                <Route path="/login">
+                    <LogIn />
+                </Route>
+                <Route path="/cart">
+                    <ShoppingCart />
                 </Route>
             </Switch>
         </div>

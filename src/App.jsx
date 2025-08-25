@@ -12,7 +12,7 @@ function App() {
 
   useEffect(() => {
     dispatch(checkToken());
-  }, []);
+  }, [dispatch]);
   return (
     <div className="font-montserrat">
       <Header />
