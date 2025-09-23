@@ -3,9 +3,9 @@ import ShopProductCard from "./ShopProductCard"
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import {Link} from "react-router-dom";
-import { setPage } from "../store/actions/productActions";
+import {setPage} from "../../store/actions/productActions"
 import { useDispatch } from "react-redux";
-import { createProductUrl } from "../utils/createProductUrl";
+import { createProductUrl } from "../../utils/createProductUrl";
 
 
 export default function ShopProductCards({categoryId, filters, setFilters, handleFilter}) {

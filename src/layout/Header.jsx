@@ -132,7 +132,7 @@ export default function Header() {
                                     </div>
                                 </div>
                                 <Link to="/about" className="ml-[-5px]">About</Link>
-                                <Link to="/">Blog</Link>
+                                <Link to="/blog">Blog</Link>
                                 <Link to="/contact">Contact</Link>
                                 <Link to="/">Pages</Link>
                             </nav>

@@ -1,5 +1,5 @@
 
-import { getOptimizedProductImg } from "../utils/getOptimizedProductImg";
+import { getOptimizedProductImg } from "../../utils/getOptimizedProductImg";
 
 export default function ShopProductCard({onClick, product}) {
     
