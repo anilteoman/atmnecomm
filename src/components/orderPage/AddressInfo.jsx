@@ -45,7 +45,7 @@ export default function AddressInfo({setStep}) {
 
     useEffect(() => {
         dispatch(getAddress());
-    }, [])
+    })
 
     return (
         <section className="address-info-main">
@@ -103,12 +103,7 @@ export default function AddressInfo({setStep}) {
                 <button className="bg-[#23A6F0] disabled:bg-blue-300 disabled:hover:cursor-not-allowed text-white p-1.5 rounded w-[7rem] h-[3rem] hover:cursor-pointer text-center flex items-center justify-center md:w-[9rem] md:h-[4rem]" disabled={confirmButton} onClick={handleConfirmButton}>Confirm Address</button>
             </div>
             <div className="address-new">
-                {/* {formSection && <AddressForm address={addressData}/>} */}
-                {formSection && (
-                    <div className="p-4 bg-gray-100 rounded">
-                        <p className="text-center text-gray-600">AddressForm component needs to be implemented</p>
-                    </div>
-                )}
+                {formSection && <AddressForm address={addressData}/>}
             </div>
         </section>
     );
