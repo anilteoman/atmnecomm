@@ -20,6 +20,9 @@ export default function PageContent() {
                 <Route path="/shop">
                     <ShopPage />
                 </Route>
+                <Route path="/shop/category/:categoryId">
+                    <ShopPage />
+                </Route>
                 <Route path="/about">
                     <AboutPage />
                 </Route>
@@ -29,14 +32,11 @@ export default function PageContent() {
                 <Route path="/blog">
                     <BlogPage />
                 </Route>
-                <Route path="/product">
+                <Route path="/product/:id">
                     <ProductDetail />
                 </Route>
                 <Route path="/team">
                     <TeamPage />
-                </Route>
-                <Route path="/product:id">
-                    <ProductDetail />
                 </Route>
                  <Route path="/signup">
                     <SignUp />

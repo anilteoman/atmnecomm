@@ -1,4 +1,4 @@
-import ShopCategories from "../components/shopPage/ShopProductCard";
+import ShopCategories from "../components/shopPage/ShopCategories";
 import ShopProductCards from "../components/shopPage/ShopProductCards";
 import BrandLogos from "../components/sharedcomp/BrandLogos";
 import { useDispatch, useSelector } from "react-redux";

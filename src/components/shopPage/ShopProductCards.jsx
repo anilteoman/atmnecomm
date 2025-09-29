@@ -70,8 +70,8 @@ export default function ShopProductCards({categoryId, filters, setFilters, handl
                     </div>
                 ) : (<div className="shop-product-cards grid grid-cols-1 md:grid-cols-4 gap-[1.875rem] md:flex-row md:gap-[1.875rem]">
                     {productList.map((product) => (
-                        <Link to={createProductUrl(product, categories)}>
-                            <ShopProductCard key={product.id} product={product}/>
+                        <Link key={product.id} to={`/product/${product.id}`}>
+                            <ShopProductCard product={product}/>
                         </Link>
                     ))}
                 </div>)}
