@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { addAddress, editAddress } from "../store/thunks/clientThunks";
+import { addAddress, editAddress } from "../../store/thunks/clientThunks";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
