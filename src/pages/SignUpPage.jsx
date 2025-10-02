@@ -1,9 +1,9 @@
-import axiosInstance from "../utils/axiosInstance";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import {useHistory} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getRoles } from "../store/thunks/clientThunks";
+import { signupUser } from "../store/thunks/signupThunks";
 import { toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
@@ -60,21 +60,22 @@ export default function SignUp() {
             };
         }
         
-        try {
-            const response = await axiosInstance.post("/signup", payload);
-            toast.success(response.data.message);
+        // Use the new signup thunk with auto-authentication
+        const result = await dispatch(signupUser(payload));
+        
+        if (result.success) {
+            // Small delay to show the success message, then redirect
             setTimeout(() => {
-                history.goBack();
-            }, 3000);
-        } catch (error) {
-            console.error("Error: ", error);
-            const status = error.response?.status;
-            if(status === 409) {
-                toast.error("User with same email already registered.");
-            } else {
-                toast.error("An error has occured!");
-            }
+                if (result.autoLoggedIn) {
+                    // User is now authenticated, redirect to home
+                    history.push("/");
+                } else {
+                    // Auto-login failed, redirect to login
+                    history.push("/login");
+                }
+            }, 2000);
         }
+        // Error handling is done in the thunk
     };
     
     return (

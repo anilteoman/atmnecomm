@@ -21,13 +21,12 @@ export const getRoles = () => async (dispatch, getState) => {
 
 export const getAddress = () => async (dispatch, getState) => {
     const {user, addressList, creditCards} = getState().client;
-    const token = localStorage.getItem("token");
 
     if(addressList.length > 0)
         return addressList;
 
     try {
-        axiosInstance.defaults.headers.common["Authorization"] = token;
+        // AuthService automatically handles the Authorization header
         const response = await axiosInstance.get("/user/address");
         const data = response.data;
         dispatch(setUser(user, data, creditCards));

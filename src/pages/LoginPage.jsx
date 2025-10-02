@@ -16,10 +16,12 @@ export default function LogIn() {
         const result = await dispatch(loginUser(data));
 
         if(result.success) {
-            history.goBack();
-        } else {
-            toast.error("Login failed: Wrong email / password!")
+            // Small delay to show the success message
+            setTimeout(() => {
+                history.push("/"); // Redirect to home page
+            }, 1000);
         }
+        // Error handling is done in the thunk
     }
     
     return (
