@@ -124,7 +124,7 @@ export default function SignUp() {
                             ))}
                         </select>
                     </div>
-                    {selectedRole == 2 && (
+                    {selectedRole == 3 && (
                         <div className="form-store-info flex flex-col gap-5">
                             <div className="store-name flex flex-col">
                                 <label htmlFor="storeName" className="text-lg leading-6">Store Name</label>
