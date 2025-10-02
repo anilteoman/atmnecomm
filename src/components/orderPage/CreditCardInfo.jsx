@@ -17,6 +17,13 @@ export default function CreditCardInfo({ setStep }) {
   const dispatch = useDispatch();
   const cardList = useSelector((state) => state.client.creditCards || []);
 
+  // Helper function to safely get last 4 digits of card number
+  const getCardLastFourDigits = (cardNo) => {
+    if (!cardNo) return "****";
+    const cardStr = String(cardNo); // Convert to string regardless of original type
+    return cardStr.length >= 4 ? cardStr.slice(-4) : cardStr;
+  };
+
   const handleNewButton = () => {
     setCardData(null);
     setFormSection(true);
@@ -67,8 +74,15 @@ export default function CreditCardInfo({ setStep }) {
               : "saved-card-list"
           }
         >
-          {cardList.length > 0 &&
-            cardList.map((card) => (
+          {cardList.length > 0 ? (
+            cardList.map((card) => {
+              // Safety check to ensure card data exists
+              if (!card || !card.id) {
+                console.warn('Invalid card data:', card);
+                return null;
+              }
+              
+              return (
               <div key={card?.id} className="flex flex-col w-90">
                 <div className="card-title flex justify-between px-2">
                   <div className="title-radio flex gap-1">
@@ -79,7 +93,7 @@ export default function CreditCardInfo({ setStep }) {
                       onChange={() => handleRadioButton(card)}
                     />
                     <label htmlFor={`card-${card?.id}`}>
-                      Card ending in {card?.card_no?.slice(-4)}
+                      Card ending in {getCardLastFourDigits(card?.card_no)}
                     </label>
                   </div>
                   <div className="title-buttons flex gap-3">
@@ -101,11 +115,11 @@ export default function CreditCardInfo({ setStep }) {
                   <div className="card-name-number flex justify-between">
                     <div className="card-name flex gap-1 items-center">
                       <CreditCard color="#E77C40" size={16} />
-                      <h4>{card?.name_on_card}</h4>
+                      <h4>{card?.name_on_card || 'Card Holder'}</h4>
                     </div>
                     <div className="card-number flex gap-1 items-center">
                       <span className="text-sm">
-                        **** **** **** {card?.card_no?.slice(-4)}
+                        **** **** **** {getCardLastFourDigits(card?.card_no)}
                       </span>
                     </div>
                   </div>
@@ -116,13 +130,19 @@ export default function CreditCardInfo({ setStep }) {
                     </div>
                     <div className="expire-date">
                       <span className="text-sm">
-                        {card?.expire_month}/{card?.expire_year}
+                        {card?.expire_month || 'MM'}/{card?.expire_year || 'YYYY'}
                       </span>
                     </div>
                   </div>
                 </div>
               </div>
-            ))}
+              );
+            })
+          ) : (
+            <div className="text-center py-8 text-gray-500">
+              <p>No credit cards found. Please add a new credit card to continue.</p>
+            </div>
+          )}
         </div>
         <div className="card-buttons flex gap-4">
           <button

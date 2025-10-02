@@ -38,7 +38,7 @@ export default function SignUp() {
         const roleId = Number(data.role_id);
         let payload;
         
-        if(roleId == 2) {
+        if(roleId == 3) {
             payload = {
                 name: data.name,
                 email: data.email,

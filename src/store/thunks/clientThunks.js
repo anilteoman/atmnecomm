@@ -38,8 +38,13 @@ export const getAddress = () => async (dispatch, getState) => {
 
 export const addAddress = (formData) => async (dispatch, getState) => {
     const {user, addressList, creditCards} = getState().client;
+    const token = localStorage.getItem("token");
 
     try {
+        // Set authorization header
+        if (token) {
+            axiosInstance.defaults.headers.common["Authorization"] = token;
+        }
         const response = await axiosInstance.post("/user/address", formData);
         console.log(response.data);
         //const newAddress = response.data[0];
@@ -52,8 +57,13 @@ export const addAddress = (formData) => async (dispatch, getState) => {
 
 export const editAddress = (formData) => async (dispatch, getState) => {
     const {user, addressList, creditCards} = getState().client;
+    const token = localStorage.getItem("token");
 
     try {
+        // Set authorization header
+        if (token) {
+            axiosInstance.defaults.headers.common["Authorization"] = token;
+        }
         const response = await axiosInstance.put("/user/address", formData);
         //const updatedAddress = response.data[0];
         const updatedAddress = response.data;
@@ -102,8 +112,13 @@ export const getCards = () => async (dispatch, getState) => {
 
 export const addCard = (formData) => async (dispatch, getState) => {
     const {user, addressList, creditCards} = getState().client;
+    const token = localStorage.getItem("token");
 
     try {
+        // Set authorization header
+        if (token) {
+            axiosInstance.defaults.headers.common["Authorization"] = token;
+        }
         const response = await axiosInstance.post("/user/card", formData);
         //const newCard = response.data[0];
         const newCard = response.data;
@@ -119,8 +134,13 @@ export const addCard = (formData) => async (dispatch, getState) => {
 
 export const editCard = (formData) => async (dispatch, getState) => {
     const {user, addressList, creditCards} = getState().client;
+    const token = localStorage.getItem("token");
 
     try {
+        // Set authorization header
+        if (token) {
+            axiosInstance.defaults.headers.common["Authorization"] = token;
+        }
         const response = await axiosInstance.put("/user/card", formData);
         const updatedCard = response.data[0];
         const newList = creditCards.map(card => card.id === updatedCard.id ? updatedCard : card);

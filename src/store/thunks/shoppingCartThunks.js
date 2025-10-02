@@ -48,6 +48,14 @@ export const addPrice = (totalPrice) => (dispatch) => {
 }
 
 export const confirmOrder = (addressId, cardInfo, products, totalPrice, history) => async (dispatch) => {
+    const token = localStorage.getItem("token");
+    
+    // Check if user is authenticated
+    if (!token) {
+        toast.error("Please login to place an order.");
+        history.push("/login");
+        return;
+    }
     
     const payload = {
         address_id: addressId,
@@ -65,6 +73,13 @@ export const confirmOrder = (addressId, cardInfo, products, totalPrice, history)
     };
 
     try {
+        // Set authorization header
+        axiosInstance.defaults.headers.common["Authorization"] = token;
+        
+        // Debug logging
+        console.log("Order payload:", payload);
+        console.log("Authorization token:", token ? "Present" : "Missing");
+        
         const response = await axiosInstance.post("/order", payload);
         console.log(response.data);
         toast.success("Order successfull!");
@@ -73,6 +88,29 @@ export const confirmOrder = (addressId, cardInfo, products, totalPrice, history)
         history.push("/");
     } catch (error) {
         console.error("Order error: ", error);
-        toast.error("Order error!");
+        
+        // Handle different types of errors
+        const status = error.response?.status;
+        const message = error.response?.data?.message || error.message;
+        
+        switch (status) {
+            case 401:
+                toast.error("Session expired. Please login again.");
+                localStorage.removeItem("token");
+                history.push("/login");
+                break;
+            case 403:
+                toast.error("Access denied. Please check your account permissions.");
+                break;
+            case 400:
+                toast.error(`Invalid order data: ${message}`);
+                break;
+            case 500:
+                toast.error("Server error. Please try again later.");
+                break;
+            default:
+                toast.error(`Order failed: ${message}`);
+                break;
+        }
     }
 }

@@ -42,7 +42,7 @@ export default function CreditCardForm({card}) {
                         <label htmlFor="card_no" className="text-lg leading-6">Credit Card No</label>
                         <input {...register("card_no", {required: "Please enter card number",
                             pattern: {
-                                value: /^\d{12}$/,
+                                value: /^\d{16}$/,
                                 message: "Card number must be a 12-digit number.",
                             }})} id="card_no" name="card_no" type="text" placeholder="1234123412341234" className=" bg-gray-50 border rounded-[5px] w-[20rem] h-[2.5rem] md:w-[25rem]"/>
                             {errors.card_no && (
