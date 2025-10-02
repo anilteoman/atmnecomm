@@ -74,20 +74,22 @@ export const confirmOrder = (addressId, cardInfo, products, totalPrice, history)
 
     try {
         // Set authorization header
-        axiosInstance.defaults.headers.common["Authorization"] = token;
+        axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         
         // Debug logging
         console.log("Order payload:", payload);
-        console.log("Authorization token:", token ? "Present" : "Missing");
+        console.log("Authorization header:", axiosInstance.defaults.headers.common["Authorization"]);
         
         const response = await axiosInstance.post("/order", payload);
-        console.log(response.data);
-        toast.success("Order successfull!");
+        console.log("Order response:", response.data);
+        toast.success("Order successful!");
         dispatch(setCart([]));
         dispatch(setPrice(0));
         history.push("/");
     } catch (error) {
         console.error("Order error: ", error);
+        console.error("Error response:", error.response?.data);
+        console.error("Request headers:", error.config?.headers);
         
         // Handle different types of errors
         const status = error.response?.status;

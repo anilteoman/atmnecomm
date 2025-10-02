@@ -32,6 +32,15 @@ export const getAddress = () => async (dispatch, getState) => {
         dispatch(setUser(user, data, creditCards));
     } catch (error) {
         console.error("Address fetch error: ", error);
+        console.error("Error response:", error.response?.data);
+        
+        if (error.response?.status === 500) {
+            toast.error("Server error occurred while fetching addresses.");
+        } else if (error.response?.data?.message) {
+            toast.error(error.response.data.message);
+        } else {
+            toast.error("Failed to fetch addresses.");
+        }
     }
 };
 
@@ -42,15 +51,26 @@ export const addAddress = (formData) => async (dispatch, getState) => {
     try {
         // Set authorization header
         if (token) {
-            axiosInstance.defaults.headers.common["Authorization"] = token;
+            axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         }
         const response = await axiosInstance.post("/user/address", formData);
-        console.log(response.data);
+        console.log("Add address response:", response.data);
         //const newAddress = response.data[0];
         const newAddress = response.data;
         dispatch(setUser(user, [...addressList, newAddress], creditCards));
+        toast.success("Address added successfully!");
     } catch (error) {
         console.error("Add new address error: ", error);
+        console.error("Request payload:", formData);
+        console.error("Error response:", error.response?.data);
+        
+        if (error.response?.status === 500) {
+            toast.error("Server error occurred while adding address. Please try again.");
+        } else if (error.response?.data?.message) {
+            toast.error(error.response.data.message);
+        } else {
+            toast.error("Failed to add address. Please check your input and try again.");
+        }
     }
 }
 
@@ -61,7 +81,7 @@ export const editAddress = (formData) => async (dispatch, getState) => {
     try {
         // Set authorization header
         if (token) {
-            axiosInstance.defaults.headers.common["Authorization"] = token;
+            axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         }
         const response = await axiosInstance.put("/user/address", formData);
         //const updatedAddress = response.data[0];
@@ -78,7 +98,7 @@ export const deleteAddress = (addressId) => async (dispatch, getState) => {
     const token = localStorage.getItem("token");
 
     try {
-         axiosInstance.defaults.headers.common["Authorization"] = token;
+         axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response = await axiosInstance.delete(`/user/address/${addressId}`);
         const message = response.data.message;
         console.log(message);
@@ -100,7 +120,7 @@ export const getCards = () => async (dispatch, getState) => {
         return creditCards;
 
     try {
-        axiosInstance.defaults.headers.common["Authorization"] = token;
+        axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response = await axiosInstance.get("/user/card");
         const data = response.data;
         dispatch(setUser(user, addressList, data));
@@ -116,7 +136,7 @@ export const addCard = (formData) => async (dispatch, getState) => {
     try {
         // Set authorization header
         if (token) {
-            axiosInstance.defaults.headers.common["Authorization"] = token;
+            axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         }
         const response = await axiosInstance.post("/user/card", formData);
         //const newCard = response.data[0];
@@ -138,7 +158,7 @@ export const editCard = (formData) => async (dispatch, getState) => {
     try {
         // Set authorization header
         if (token) {
-            axiosInstance.defaults.headers.common["Authorization"] = token;
+            axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         }
         const response = await axiosInstance.put("/user/card", formData);
         const updatedCard = response.data[0];
@@ -154,7 +174,7 @@ export const deleteCard = (cardId) => async (dispatch, getState) => {
     const token = localStorage.getItem("token");
 
     try {
-         axiosInstance.defaults.headers.common["Authorization"] = token;
+         axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response = await axiosInstance.delete(`/user/card/${cardId}`);
         const message = response.data.message;
         toast.success(message);
@@ -171,7 +191,7 @@ export const getOrders = () => async (dispatch) => {
     const token = localStorage.getItem("token");
 
     try {
-        axiosInstance.defaults.headers.common["Authorization"] = token;
+        axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         const response = await axiosInstance.get("/order");
         dispatch(setOrders(response.data));
     } catch (error) {

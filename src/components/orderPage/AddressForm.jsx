@@ -14,6 +14,7 @@ export default function AddressForm({ address }) {
       title: "",
       name: "",
       surname: "",
+      phone: "",
       city: "",
       district: "",
       neighborhood: "",

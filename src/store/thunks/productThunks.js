@@ -108,11 +108,16 @@ export const getBestSellers = () => async (dispatch) => {
     try {
         dispatch(setFetchState("FETCHING"));
         const response = await axiosInstance.get("/products/bestsellers");
-        console.log(response.data);
-        dispatch(setBestSellers(response.data));
+        console.log("Bestsellers response:", response.data);
+        
+        // Extract products array from the response
+        const products = response.data.products || [];
+        dispatch(setBestSellers(products));
         dispatch(setFetchState("FETCHED"));
     } catch (error) {
         console.error("Bestseller fetch failed: ", error);
+        console.error("Error response:", error.response?.data);
         dispatch(setFetchState("FAILED"));
+        dispatch(setBestSellers([])); // Set empty array on error
     }
 }
