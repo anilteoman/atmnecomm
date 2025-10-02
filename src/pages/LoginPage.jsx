@@ -1,16 +1,13 @@
-import axiosInstance from "../utils/axiosInstance";
-import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-import {useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { loginUser } from "../store/thunks/loginThunks";
-import { toast } from "react-toastify";
 
 export default function LogIn() {
     
     const history = useHistory();
     const dispatch = useDispatch();
-    const {register, handleSubmit, formState: {errors, isValid}} = useForm({mode: "onTouched"});
+    const {register, handleSubmit, formState: {isValid}} = useForm({mode: "onTouched"});
 
     const onSubmit = async (data) => {
         const result = await dispatch(loginUser(data));

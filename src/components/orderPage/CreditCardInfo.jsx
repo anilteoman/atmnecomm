@@ -17,10 +17,9 @@ export default function CreditCardInfo({ setStep }) {
   const dispatch = useDispatch();
   const cardList = useSelector((state) => state.client.creditCards || []);
 
-  // Helper function to safely get last 4 digits of card number
   const getCardLastFourDigits = (cardNo) => {
     if (!cardNo) return "****";
-    const cardStr = String(cardNo); // Convert to string regardless of original type
+    const cardStr = String(cardNo);
     return cardStr.length >= 4 ? cardStr.slice(-4) : cardStr;
   };
 
@@ -76,71 +75,73 @@ export default function CreditCardInfo({ setStep }) {
         >
           {cardList.length > 0 ? (
             cardList.map((card) => {
-              // Safety check to ensure card data exists
               if (!card || !card.id) {
-                console.warn('Invalid card data:', card);
+                console.warn("Invalid card data:", card);
                 return null;
               }
-              
+
               return (
-              <div key={card?.id} className="flex flex-col w-90">
-                <div className="card-title flex justify-between px-2">
-                  <div className="title-radio flex gap-1">
-                    <input
-                      type="radio"
-                      name="card-selection"
-                      id={`card-${card?.id}`}
-                      onChange={() => handleRadioButton(card)}
-                    />
-                    <label htmlFor={`card-${card?.id}`}>
-                      Card ending in {getCardLastFourDigits(card?.card_no)}
-                    </label>
+                <div key={card?.id} className="flex flex-col w-90">
+                  <div className="card-title flex justify-between px-2">
+                    <div className="title-radio flex gap-1">
+                      <input
+                        type="radio"
+                        name="card-selection"
+                        id={`card-${card?.id}`}
+                        onChange={() => handleRadioButton(card)}
+                      />
+                      <label htmlFor={`card-${card?.id}`}>
+                        Card ending in {getCardLastFourDigits(card?.card_no)}
+                      </label>
+                    </div>
+                    <div className="title-buttons flex gap-3">
+                      <button
+                        className="underline"
+                        onClick={() => handleDeleteCard(card?.id)}
+                      >
+                        Delete
+                      </button>
+                      <button
+                        className="underline"
+                        onClick={() => handleEditButton(card)}
+                      >
+                        Edit
+                      </button>
+                    </div>
                   </div>
-                  <div className="title-buttons flex gap-3">
-                    <button
-                      className="underline"
-                      onClick={() => handleDeleteCard(card?.id)}
-                    >
-                      Delete
-                    </button>
-                    <button
-                      className="underline"
-                      onClick={() => handleEditButton(card)}
-                    >
-                      Edit
-                    </button>
+                  <div className="card-container border w-90 h-40 flex flex-col gap-1 p-4 bg-gray-100 rounded">
+                    <div className="card-name-number flex justify-between">
+                      <div className="card-name flex gap-1 items-center">
+                        <CreditCard color="#E77C40" size={16} />
+                        <h4>{card?.name_on_card || "Card Holder"}</h4>
+                      </div>
+                      <div className="card-number flex gap-1 items-center">
+                        <span className="text-sm">
+                          **** **** **** {getCardLastFourDigits(card?.card_no)}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="card-expire flex justify-between">
+                      <div className="expire-label flex gap-1 items-center">
+                        <Calendar size={16} />
+                        <span className="text-sm">Expires:</span>
+                      </div>
+                      <div className="expire-date">
+                        <span className="text-sm">
+                          {card?.expire_month || "MM"}/
+                          {card?.expire_year || "YYYY"}
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div className="card-container border w-90 h-40 flex flex-col gap-1 p-4 bg-gray-100 rounded">
-                  <div className="card-name-number flex justify-between">
-                    <div className="card-name flex gap-1 items-center">
-                      <CreditCard color="#E77C40" size={16} />
-                      <h4>{card?.name_on_card || 'Card Holder'}</h4>
-                    </div>
-                    <div className="card-number flex gap-1 items-center">
-                      <span className="text-sm">
-                        **** **** **** {getCardLastFourDigits(card?.card_no)}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="card-expire flex justify-between">
-                    <div className="expire-label flex gap-1 items-center">
-                      <Calendar size={16} />
-                      <span className="text-sm">Expires:</span>
-                    </div>
-                    <div className="expire-date">
-                      <span className="text-sm">
-                        {card?.expire_month || 'MM'}/{card?.expire_year || 'YYYY'}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
               );
             })
           ) : (
             <div className="text-center py-8 text-gray-500">
-              <p>No credit cards found. Please add a new credit card to continue.</p>
+              <p>
+                No credit cards found. Please add a new credit card to continue.
+              </p>
             </div>
           )}
         </div>
