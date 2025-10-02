@@ -3,21 +3,21 @@ import { setUser } from "../actions/clientActions";
 import { AuthService } from "../../utils/authService";
 import { toast } from "react-toastify";
 
+/**
+ * Registers a new user and automatically logs them in if successful
+ * @param {Object} userData - User registration data
+ * @returns {Object} Result object with success status and user data
+ */
 export const signupUser = (userData) => async (dispatch) => {
   try {
-    // Register the user
-    const response = await axiosInstance.post("/signup", userData);
+    await axiosInstance.post("/signup", userData);
     
-    toast.success(response.data.message || "Registration successful!");
-    
-    // Auto-login after successful registration
     const loginResult = await AuthService.autoLoginAfterRegister(
       userData.email,
       userData.password
     );
     
     if (loginResult.success) {
-      // Update Redux state with user data
       const { name, email, role_id } = loginResult.userData;
       dispatch(setUser({ name, email, role_id }, [], []));
       
@@ -29,38 +29,41 @@ export const signupUser = (userData) => async (dispatch) => {
         autoLoggedIn: true
       };
     } else {
-      // Registration succeeded but auto-login failed
-      console.warn("Registration successful but auto-login failed:", loginResult.error);
+      console.warn("Auto-login failed after registration:", loginResult.error);
       toast.info("Registration successful! Please login with your credentials.");
       
       return {
         success: true,
-        autoLoggedIn: false,
-        message: "Registration successful! Please login."
+        autoLoggedIn: false
       };
     }
     
   } catch (error) {
-    console.error("Registration error:", error);
+    console.error("Registration failed:", error);
     
     const status = error.response?.status;
-    const message = error.response?.data?.message || "Registration failed";
+    const serverMessage = error.response?.data?.message;
     
+    let userMessage;
     switch (status) {
       case 409:
-        toast.error("User with this email already exists.");
+        userMessage = "User with this email already exists.";
         break;
       case 400:
-        toast.error(`Invalid registration data: ${message}`);
+        userMessage = serverMessage || "Invalid registration data.";
+        break;
+      case 500:
+        userMessage = "Server error. Please try again later.";
         break;
       default:
-        toast.error(`Registration failed: ${message}`);
-        break;
+        userMessage = serverMessage || "Registration failed. Please try again.";
     }
+    
+    toast.error(userMessage);
     
     return {
       success: false,
-      error: message
+      error: userMessage
     };
   }
 };
