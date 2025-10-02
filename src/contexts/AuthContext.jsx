@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AuthService } from '../utils/authService';
 import { checkToken } from '../store/thunks/authThunks';
+import { getCategories } from '../store/thunks/productThunks';
 
 const AuthContext = createContext();
 
@@ -10,8 +11,9 @@ export const AuthProvider = ({ children }) => {
   const user = useSelector(state => state.client.user);
 
   useEffect(() => {
-    // Check for existing authentication on app start
-    dispatch(checkToken());
+    // Initialize app data on start
+    dispatch(checkToken()); // Check authentication
+    dispatch(getCategories()); // Load categories
   }, [dispatch]);
 
   const authContextValue = {

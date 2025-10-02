@@ -2,16 +2,36 @@ import axiosInstance from "../../utils/axiosInstance";
 import { setCategories, setProductList, setTotal, setFetchState, setProductDetail, setBestSellers } from "../actions/productActions";
 
 export const getCategories = () => async (dispatch, getState) => {
-    const {categories} = getState().product;
+    const {categories, fetchState} = getState().product;
 
-    if(categories.length > 0)
+    // Don't fetch if already have categories or currently fetching
+    if(categories.length > 0 || fetchState === "FETCHING")
         return categories;
 
     try {
+        console.log('Fetching categories from backend...');
+        dispatch(setFetchState("FETCHING"));
+        
         const response = await axiosInstance.get("/categories");
-        dispatch(setCategories(response.data));
+        const categoriesData = response.data;
+        
+        console.log('Categories fetched successfully:', categoriesData);
+        dispatch(setCategories(categoriesData));
+        dispatch(setFetchState("FETCHED"));
+        
+        return categoriesData;
     } catch (error) {
         console.error("Category fetch failed: ", error);
+        dispatch(setFetchState("FAILED"));
+        dispatch(setCategories([])); // Set empty array on error
+        
+        // Log more details about the error
+        if (error.response) {
+            console.error('Response status:', error.response.status);
+            console.error('Response data:', error.response.data);
+        }
+        
+        return [];
     }
 };
 
