@@ -2,7 +2,7 @@ import React from 'react'
 
 const BlogPage = () => {
   return (
-    <div>*Blog Page*</div>
+    <div className='text-center'>*Blog Page Coming Soon*</div>
   )
 }
 
