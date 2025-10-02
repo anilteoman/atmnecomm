@@ -21,26 +21,40 @@ export const getRoles = () => async (dispatch, getState) => {
 
 export const getAddress = () => async (dispatch, getState) => {
     const {user, addressList, creditCards} = getState().client;
+    const token = localStorage.getItem("token");
 
     if(addressList.length > 0)
         return addressList;
 
     try {
-        // AuthService automatically handles the Authorization header
+        // Set authorization header
+        if (token) {
+            axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+        }
+        
+        console.log("Fetching addresses with token:", token ? "Present" : "Missing");
         const response = await axiosInstance.get("/user/address");
+        console.log("Address fetch response:", response.data);
         const data = response.data;
         dispatch(setUser(user, data, creditCards));
+        return data;
     } catch (error) {
         console.error("Address fetch error: ", error);
         console.error("Error response:", error.response?.data);
+        console.error("Request headers:", error.config?.headers);
         
         if (error.response?.status === 500) {
-            toast.error("Server error occurred while fetching addresses.");
+            toast.error("Server error occurred while fetching addresses. Please try logging in again.");
+        } else if (error.response?.status === 401 || error.response?.status === 403) {
+            toast.error("Authentication failed. Please login again.");
+            // Clear invalid token
+            localStorage.removeItem("token");
         } else if (error.response?.data?.message) {
             toast.error(error.response.data.message);
         } else {
             toast.error("Failed to fetch addresses.");
         }
+        return [];
     }
 };
 

@@ -8,7 +8,7 @@ export class AuthService {
       // Store in localStorage
       localStorage.setItem("token", token);
       // Set in axios headers for all requests
-      axiosInstance.defaults.headers.common["Authorization"] = token;
+      axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     } else {
       // Remove token
       localStorage.removeItem("token");
@@ -31,7 +31,7 @@ export class AuthService {
   static initializeAuth() {
     const token = this.getToken();
     if (token) {
-      axiosInstance.defaults.headers.common["Authorization"] = token;
+      axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     }
   }
 
